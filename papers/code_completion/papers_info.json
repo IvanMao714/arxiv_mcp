@@ -30,5 +30,24 @@
     "summary": "We prove that any completely regular code with minimum eigenvalue in any\ngeometric graph G corresponds to a completely regular code in the clique graph\nof G. Studying the interrelation of these codes, a complete characterization of\nthe completely regular codes in the Johnson graphs J(n,w) with covering radius\nw-1 and strength 1 is obtained. In particular this result finishes a\ncharacterization of the completely regular codes in the Johnson graphs J(n,3).\nWe also classify the completely regular codes of strength 1 in the Johnson\ngraphs J(n,4) with only one case for the eigenvalues left open.",
     "pdf_url": "http://arxiv.org/pdf/2210.11184v2",
     "published": "2022-10-20"
+  },
+  "2406.19026v1": {
+    "title": "Completely decomposable rank-metric codes",
+    "authors": [
+      "Paolo Santonastaso"
+    ],
+    "summary": "In this paper, we investigate completely decomposable rank-metric codes, i.e.\nrank-metric codes that are the direct sum of 1-dimensional maximum rank\ndistance codes. We study the weight distribution of such codes, characterizing\ncodewords with certain rank weights. Additionally, we obtain classification\nresults for codes with the largest number of minimum weight codewords within\nthe class of completely decomposable codes.",
+    "pdf_url": "http://arxiv.org/pdf/2406.19026v1",
+    "published": "2024-06-27"
+  },
+  "2402.19120v1": {
+    "title": "A Naive Approach for Automatic Line-level Code Completion",
+    "authors": [
+      "Shamima Naznin",
+      "Dr. Manishankar Mondal"
+    ],
+    "summary": "Coding is an integral aspect of programming. A programmer can automatically\ncomplete a code fragment after writing a few tokens, and the process of\nautomatic completion is known as code completion. Several research studies on\ncode completion have previously been conducted for method body completion and\nmethod parameter completion. However, this fundamental study explores the\nautomatic completion of any program statement that might not even be part of a\nmethod.\n  The goal is to provide suggestions to the programmer for completing code\nthroughout the codebase by identifying and analyzing code similarities. The\nproposed methodology can be regarded as a fundamental framework for automated\ncode completion. From the investigation of hundreds of revisions of four\nsubject systems written in C and Java, it is observed that the proposed method\ncan automatically complete around 22% of code statements with an average\naccuracy of 87% that a programmer writes during development, accelerating\nsoftware development time. The empirical analysis further demonstrates that the\napproach can be used with programming language neutrality.\n  The study concludes by illustrating that taking 10 characters as prefixes\nbefore invoking completion provides maximum precision.",
+    "pdf_url": "http://arxiv.org/pdf/2402.19120v1",
+    "published": "2024-02-29"
   }
 }

@@ -1,13 +1,18 @@
 import arxiv
 import json
 import os
-from typing import List
+from typing import List, Dict, Optional
 from mcp.server.fastmcp import FastMCP
 
 PAPER_DIR = "papers"
+PDFS_DIR = "pdfs"
 
-# Initialize FastMCP server
-mcp = FastMCP("research", port=8001)
+# Create necessary directories
+os.makedirs(PAPER_DIR, exist_ok=True)
+os.makedirs(PDFS_DIR, exist_ok=True)
+
+# Initialize FastMCP server with explicit host
+mcp = FastMCP("research", host="127.0.0.1", port=8001)
 
 
 @mcp.tool()
@@ -98,6 +103,32 @@ def extract_info(paper_id: str) -> str:
 
     return f"There's no saved information related to paper {paper_id}."
 
+@mcp.tool()
+def download_paper(paper_id: str) -> str:
+    """
+    Download the specified paper based on its ID.
+
+    Args:
+        paper_id: The ID of the paper to download
+
+    Returns:
+        str: Path to the downloaded PDF file or error message
+    """
+    try:
+        os.makedirs(PDFS_DIR, exist_ok=True)
+        client = arxiv.Client()
+        
+        # Search for the paper first
+        search = arxiv.Search(id_list=[paper_id])
+        paper = next(client.results(search))
+        
+        # Download the paper
+        pdf_path = os.path.join(PDFS_DIR, f"{paper_id}.pdf")
+        paper.download_pdf(dirpath=PDFS_DIR, filename=f"{paper_id}.pdf")
+        return f"Paper downloaded successfully to {pdf_path}"
+    except Exception as e:
+        return f"Error downloading paper: {str(e)}"
+
 
 @mcp.resource("papers://folders")
 def get_available_folders() -> str:
@@ -106,27 +137,30 @@ def get_available_folders() -> str:
 
     This resource provides a simple list of all available topic folders.
     """
-    folders = []
+    try:
+        folders = []
 
-    # Get all topic directories
-    if os.path.exists(PAPER_DIR):
-        for topic_dir in os.listdir(PAPER_DIR):
-            topic_path = os.path.join(PAPER_DIR, topic_dir)
-            if os.path.isdir(topic_path):
-                papers_file = os.path.join(topic_path, "papers_info.json")
-                if os.path.exists(papers_file):
-                    folders.append(topic_dir)
+        # Get all topic directories
+        if os.path.exists(PAPER_DIR):
+            for topic_dir in os.listdir(PAPER_DIR):
+                topic_path = os.path.join(PAPER_DIR, topic_dir)
+                if os.path.isdir(topic_path):
+                    papers_file = os.path.join(topic_path, "papers_info.json")
+                    if os.path.exists(papers_file):
+                        folders.append(topic_dir)
 
-    # Create a simple markdown list
-    content = "# Available Topics\n\n"
-    if folders:
-        for folder in folders:
-            content += f"- {folder}\n"
-        content += f"\nUse @{folder} to access papers in that topic.\n"
-    else:
-        content += "No topics found.\n"
+        # Create a simple markdown list
+        content = "# Available Topics\n\n"
+        if folders:
+            for folder in folders:
+                content += f"- {folder}\n"
+            content += f"\nUse @{folder} to access papers in that topic.\n"
+        else:
+            content += "No topics found.\n"
 
-    return content
+        return content
+    except Exception as e:
+        return f"Error listing folders: {str(e)}"
 
 
 @mcp.resource("papers://{topic}")
@@ -137,32 +171,35 @@ def get_topic_papers(topic: str) -> str:
     Args:
         topic: The research topic to retrieve papers for
     """
-    topic_dir = topic.lower().replace(" ", "_")
-    papers_file = os.path.join(PAPER_DIR, topic_dir, "papers_info.json")
-
-    if not os.path.exists(papers_file):
-        return f"# No papers found for topic: {topic}\n\nTry searching for papers on this topic first."
-
     try:
-        with open(papers_file, 'r') as f:
-            papers_data = json.load(f)
+        topic_dir = topic.lower().replace(" ", "_")
+        papers_file = os.path.join(PAPER_DIR, topic_dir, "papers_info.json")
 
-        # Create markdown content with paper details
-        content = f"# Papers on {topic.replace('_', ' ').title()}\n\n"
-        content += f"Total papers: {len(papers_data)}\n\n"
+        if not os.path.exists(papers_file):
+            return f"# No papers found for topic: {topic}\n\nTry searching for papers on this topic first."
 
-        for paper_id, paper_info in papers_data.items():
-            content += f"## {paper_info['title']}\n"
-            content += f"- **Paper ID**: {paper_id}\n"
-            content += f"- **Authors**: {', '.join(paper_info['authors'])}\n"
-            content += f"- **Published**: {paper_info['published']}\n"
-            content += f"- **PDF URL**: [{paper_info['pdf_url']}]({paper_info['pdf_url']})\n\n"
-            content += f"### Summary\n{paper_info['summary'][:500]}...\n\n"
-            content += "---\n\n"
+        try:
+            with open(papers_file, 'r') as f:
+                papers_data = json.load(f)
 
-        return content
-    except json.JSONDecodeError:
-        return f"# Error reading papers data for {topic}\n\nThe papers data file is corrupted."
+            # Create markdown content with paper details
+            content = f"# Papers on {topic.replace('_', ' ').title()}\n\n"
+            content += f"Total papers: {len(papers_data)}\n\n"
+
+            for paper_id, paper_info in papers_data.items():
+                content += f"## {paper_info['title']}\n"
+                content += f"- **Paper ID**: {paper_id}\n"
+                content += f"- **Authors**: {', '.join(paper_info['authors'])}\n"
+                content += f"- **Published**: {paper_info['published']}\n"
+                content += f"- **PDF URL**: [{paper_info['pdf_url']}]({paper_info['pdf_url']})\n\n"
+                content += f"### Summary\n{paper_info['summary'][:500]}...\n\n"
+                content += "---\n\n"
+
+            return content
+        except json.JSONDecodeError:
+            return f"# Error reading papers data for {topic}\n\nThe papers data file is corrupted."
+    except Exception as e:
+        return f"Error getting topic papers: {str(e)}"
 
 
 @mcp.prompt()
@@ -193,5 +230,9 @@ def generate_search_prompt(topic: str, num_papers: int = 5) -> str:
 
 
 if __name__ == "__main__":
-    # Initialize and run the server
-    mcp.run(transport='sse')
+    try:
+        print(f"Starting MCP server on http://127.0.0.1:8001")
+        # Initialize and run the server
+        mcp.run(transport='sse')
+    except Exception as e:
+        print(f"Error starting server: {e}")

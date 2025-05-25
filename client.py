@@ -8,6 +8,8 @@ from contextlib import AsyncExitStack
 import json
 import asyncio
 
+from utils.color import Color
+
 load_dotenv()
 
 class ToolDefinition(TypedDict):
@@ -63,7 +65,7 @@ class MCP_ChatBot:
             # List available tools for this session
             response = await session.list_tools()
             tools = response.tools
-            print(f"\nConnected to {server_name} with tools:", [t.name for t in tools])
+            print(f"{Color.YELLOW}\nConnected to {server_name} with tools:{Color.RESET}", [t.name for t in tools])
             
             for tool in tools:
                 self.tool_to_session[tool.name] = session
@@ -76,7 +78,7 @@ class MCP_ChatBot:
                     }
                 })
         except Exception as e:
-            print(f"Failed to connect to {server_name}: {e}")
+            print(f"{Color.YELLOW}Failed to connect to {server_name}: {e}{Color.RESET}")
 
     async def connect_to_servers(self):
         """Connect to all configured MCP servers."""
@@ -89,7 +91,7 @@ class MCP_ChatBot:
             for server_name, server_config in servers.items():
                 await self.connect_to_server(server_name, server_config)
         except Exception as e:
-            print(f"Error loading server configuration: {e}")
+            print(f"{Color.YELLOW}Error loading server configuration: {e}{Color.RESET}")
             raise
 
     async def process_query(self, query):
@@ -114,7 +116,7 @@ class MCP_ChatBot:
                     tool_args = json.loads(tool_call.function.arguments)
                     tool_name = tool_call.function.name
 
-                    print(f"Calling tool {tool_name} with args {tool_args}")
+                    print(f"{Color.BLUE}Calling tool {tool_name} with args {tool_args}{Color.RESET}")
 
                     # Get the appropriate session for this tool
                     session = self.tool_to_session[tool_name]
@@ -135,7 +137,7 @@ class MCP_ChatBot:
                 )
 
                 if not response.choices[0].message.tool_calls:
-                    print(response.choices[0].message.content)
+                    print(f"{Color.GREEN}Response:",response.choices[0].message.content,Color.RESET)
                     process_query = False
 
     async def chat_loop(self):
