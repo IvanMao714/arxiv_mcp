@@ -12,7 +12,7 @@ os.makedirs(PAPER_DIR, exist_ok=True)
 os.makedirs(PDFS_DIR, exist_ok=True)
 
 # Initialize FastMCP server with explicit host
-mcp = FastMCP("research", host="127.0.0.1", port=8001)
+mcp = FastMCP("research", host="0.0.0.0", port=8001)
 
 
 @mcp.tool()
@@ -231,7 +231,7 @@ def generate_search_prompt(topic: str, num_papers: int = 5) -> str:
 
 if __name__ == "__main__":
     try:
-        print(f"Starting MCP server on http://127.0.0.1:8001")
+        print(f"Starting MCP server on http://0.0.0.0:8001")
         # Initialize and run the server
         mcp.run(transport='sse')
     except Exception as e:
