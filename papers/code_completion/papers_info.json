@@ -1,0 +1,34 @@
+{
+  "1703.05929v1": {
+    "title": "Completely regular codes by concatenating Hamming codes",
+    "authors": [
+      "J. Borges",
+      "J. Rif\u00e0",
+      "V. Zinoviev"
+    ],
+    "summary": "We construct new families of completely regular codes by concatenation\nmethods. By combining parity check matrices of cyclic Hamming codes, we obtain\nfamilies of completely regular codes. In all cases, we compute the intersection\narray of these codes. We also study when the extension of these codes gives\ncompletely regular codes. Some of these new codes are completely transitive.",
+    "pdf_url": "http://arxiv.org/pdf/1703.05929v1",
+    "published": "2017-03-17"
+  },
+  "1902.07628v2": {
+    "title": "On completely regular and completely transitive codes derived from Hamming codes",
+    "authors": [
+      "J. Borges",
+      "J. Rif\u00e0",
+      "V. A. Zinoviev"
+    ],
+    "summary": "Given a parity-check matrix $H_m$ of a $q$-ary Hamming code, we consider a\npartition of the columns into two subsets. Then, we consider the two codes that\nhave these submatrices as parity-check matrices. We say that anyone of these\ntwo codes is the supplementary code of the other one.\n  We obtain that if one of these codes is a Hamming code, then the\nsupplementary code is completely regular and completely transitive. If one of\nthe codes is completely regular with covering radius $2$, then the\nsupplementary code is also completely regular with covering radius at most $2$.\nMoreover, in this case, either both codes are completely transitive, or both\nare not.\n  With this technique, we obtain infinite families of completely regular and\ncompletely transitive codes which are quasi-perfect uniformly packed.",
+    "pdf_url": "http://arxiv.org/pdf/1902.07628v2",
+    "published": "2019-02-20"
+  },
+  "2210.11184v2": {
+    "title": "On completely regular codes with minimum eigenvalue in geometric graphs",
+    "authors": [
+      "I. Yu. Mogilnykh",
+      "K. V. Vorob'ev"
+    ],
+    "summary": "We prove that any completely regular code with minimum eigenvalue in any\ngeometric graph G corresponds to a completely regular code in the clique graph\nof G. Studying the interrelation of these codes, a complete characterization of\nthe completely regular codes in the Johnson graphs J(n,w) with covering radius\nw-1 and strength 1 is obtained. In particular this result finishes a\ncharacterization of the completely regular codes in the Johnson graphs J(n,3).\nWe also classify the completely regular codes of strength 1 in the Johnson\ngraphs J(n,4) with only one case for the eigenvalues left open.",
+    "pdf_url": "http://arxiv.org/pdf/2210.11184v2",
+    "published": "2022-10-20"
+  }
+}
