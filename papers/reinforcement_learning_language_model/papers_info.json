@@ -1,0 +1,57 @@
+{
+  "2401.02349v2": {
+    "title": "A Survey Analyzing Generalization in Deep Reinforcement Learning",
+    "authors": [
+      "Ezgi Korkmaz"
+    ],
+    "summary": "Reinforcement learning research obtained significant success and attention\nwith the utilization of deep neural networks to solve problems in high\ndimensional state or action spaces. While deep reinforcement learning policies\nare currently being deployed in many different fields from medical applications\nto large language models, there are still ongoing questions the field is trying\nto answer on the generalization capabilities of deep reinforcement learning\npolicies. In this paper, we will formalize and analyze generalization in deep\nreinforcement learning. We will explain the fundamental reasons why deep\nreinforcement learning policies encounter overfitting problems that limit their\ngeneralization capabilities. Furthermore, we will categorize and explain the\nmanifold solution approaches to increase generalization, and overcome\noverfitting in deep reinforcement learning policies. From exploration to\nadversarial analysis and from regularization to robustness our paper provides\nan analysis on a wide range of subfields within deep reinforcement learning\nwith a broad scope and in-depth view. We believe our study can provide a\ncompact guideline for the current advancements in deep reinforcement learning,\nand help to construct robust deep neural policies with higher generalization\nskills.",
+    "pdf_url": "http://arxiv.org/pdf/2401.02349v2",
+    "published": "2024-01-04"
+  },
+  "2402.07069v1": {
+    "title": "Using Large Language Models to Automate and Expedite Reinforcement Learning with Reward Machine",
+    "authors": [
+      "Shayan Meshkat Alsadat",
+      "Jean-Raphael Gaglione",
+      "Daniel Neider",
+      "Ufuk Topcu",
+      "Zhe Xu"
+    ],
+    "summary": "We present LARL-RM (Large language model-generated Automaton for\nReinforcement Learning with Reward Machine) algorithm in order to encode\nhigh-level knowledge into reinforcement learning using automaton to expedite\nthe reinforcement learning. Our method uses Large Language Models (LLM) to\nobtain high-level domain-specific knowledge using prompt engineering instead of\nproviding the reinforcement learning algorithm directly with the high-level\nknowledge which requires an expert to encode the automaton. We use\nchain-of-thought and few-shot methods for prompt engineering and demonstrate\nthat our method works using these approaches. Additionally, LARL-RM allows for\nfully closed-loop reinforcement learning without the need for an expert to\nguide and supervise the learning since LARL-RM can use the LLM directly to\ngenerate the required high-level knowledge for the task at hand. We also show\nthe theoretical guarantee of our algorithm to converge to an optimal policy. We\ndemonstrate that LARL-RM speeds up the convergence by 30% by implementing our\nmethod in two case studies.",
+    "pdf_url": "http://arxiv.org/pdf/2402.07069v1",
+    "published": "2024-02-11"
+  },
+  "2306.08400v1": {
+    "title": "Simple Embodied Language Learning as a Byproduct of Meta-Reinforcement Learning",
+    "authors": [
+      "Evan Zheran Liu",
+      "Sahaana Suri",
+      "Tong Mu",
+      "Allan Zhou",
+      "Chelsea Finn"
+    ],
+    "summary": "Whereas machine learning models typically learn language by directly training\non language tasks (e.g., next-word prediction), language emerges in human\nchildren as a byproduct of solving non-language tasks (e.g., acquiring food).\nMotivated by this observation, we ask: can embodied reinforcement learning (RL)\nagents also indirectly learn language from non-language tasks? Learning to\nassociate language with its meaning requires a dynamic environment with varied\nlanguage. Therefore, we investigate this question in a multi-task environment\nwith language that varies across the different tasks. Specifically, we design\nan office navigation environment, where the agent's goal is to find a\nparticular office, and office locations differ in different buildings (i.e.,\ntasks). Each building includes a floor plan with a simple language description\nof the goal office's location, which can be visually read as an RGB image when\nvisited. We find RL agents indeed are able to indirectly learn language. Agents\ntrained with current meta-RL algorithms successfully generalize to reading\nfloor plans with held-out layouts and language phrases, and quickly navigate to\nthe correct office, despite receiving no direct language supervision.",
+    "pdf_url": "http://arxiv.org/pdf/2306.08400v1",
+    "published": "2023-06-14"
+  },
+  "2210.13623v3": {
+    "title": "Reinforcement Learning and Bandits for Speech and Language Processing: Tutorial, Review and Outlook",
+    "authors": [
+      "Baihan Lin"
+    ],
+    "summary": "In recent years, reinforcement learning and bandits have transformed a wide\nrange of real-world applications including healthcare, finance, recommendation\nsystems, robotics, and last but not least, the speech and natural language\nprocessing. While most speech and language applications of reinforcement\nlearning algorithms are centered around improving the training of deep neural\nnetworks with its flexible optimization properties, there are still many\ngrounds to explore to utilize the benefits of reinforcement learning, such as\nits reward-driven adaptability, state representations, temporal structures and\ngeneralizability. In this survey, we present an overview of recent advancements\nof reinforcement learning and bandits, and discuss how they can be effectively\nemployed to solve speech and natural language processing problems with models\nthat are adaptive, interactive and scalable.",
+    "pdf_url": "http://arxiv.org/pdf/2210.13623v3",
+    "published": "2022-10-24"
+  },
+  "2410.14383v3": {
+    "title": "MARLIN: Multi-Agent Reinforcement Learning Guided by Language-Based Inter-Robot Negotiation",
+    "authors": [
+      "Toby Godfrey",
+      "William Hunt",
+      "Mohammad D. Soorati"
+    ],
+    "summary": "Multi-agent reinforcement learning is a key method for training multi-robot\nsystems over a series of episodes in which robots are rewarded or punished\naccording to their performance; only once the system is trained to a suitable\nstandard is it deployed in the real world. If the system is not trained enough,\nthe task will likely not be completed and could pose a risk to the surrounding\nenvironment. We introduce Multi-Agent Reinforcement Learning guided by\nLanguage-based Inter-Robot Negotiation (MARLIN), in which the training process\nrequires fewer training episodes to reach peak performance. Robots are equipped\nwith large language models that negotiate and debate a task, producing plans\nused to guide the policy during training. The approach dynamically switches\nbetween using reinforcement learning and large language model-based action\nnegotiation throughout training. This reduces the number of training episodes\nrequired, compared to standard multi-agent reinforcement learning, and hence\nallows the system to be deployed to physical hardware earlier. The performance\nof this approach is evaluated against multi-agent reinforcement learning,\nshowing that our hybrid method achieves comparable results with significantly\nreduced training time.",
+    "pdf_url": "http://arxiv.org/pdf/2410.14383v3",
+    "published": "2024-10-18"
+  }
+}
